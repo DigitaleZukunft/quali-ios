@@ -134,6 +134,12 @@ class AuthenticationService: AuthenticationServiceProtocol {
         }
         // Fallback: POST /_matrix/client/v3/login with m.login.token
         do {
+            struct LoginResponse: Decodable {
+                let access_token: String
+                let device_id: String?
+                let user_id: String
+                let home_server: String?
+            }
             let homeserverURL = URL(string: "https://\(homeserver.value.address)")!
             var request = URLRequest(url: homeserverURL.appending(path: "/_matrix/client/v3/login"))
             request.httpMethod = "POST"
@@ -145,14 +151,24 @@ class AuthenticationService: AuthenticationServiceProtocol {
             if let initialDeviceName { body["initial_device_display_name"] = initialDeviceName }
             if let deviceID { body["device_id"] = deviceID }
             request.httpBody = try JSONSerialization.data(withJSONObject: body)
+
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
                 MXLog.error("m.login.token HTTP failed: status=\((response as? HTTPURLResponse)?.statusCode ?? -1)")
                 return .failure(.failedLoggingIn)
             }
-            // Let the SDK restore the session from the token-based login by re-fetching session info
-            // There isn't a direct import of access_token here; rely on SDK’s internal state refresh if available.
-            // As a minimal approach, attempt a no-op call to validate and then build user session.
+            let decoded = try JSONDecoder().decode(LoginResponse.self, from: data)
+
+            let hsURL = decoded.home_server.map { "https://\($0)" } ?? "https://\(homeserver.value.address)"
+            let session = Session(accessToken: decoded.access_token,
+                                  refreshToken: nil,
+                                  userId: decoded.user_id,
+                                  deviceId: decoded.device_id ?? UUID().uuidString,
+                                  homeserverUrl: hsURL,
+                                  oidcData: nil,
+                                  slidingSyncVersion: .native)
+
+            try await client.restoreSession(session: session)
             return await userSession(for: client)
         } catch {
             MXLog.error("m.login.token HTTP error: \(error)")
