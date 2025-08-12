@@ -42,7 +42,8 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
             // The assumption here being that if you're running a custom app, your users will already be created.
             AuthenticationStartScreenViewState(serverName: appSettings.accountProviders.count == 1 ? appSettings.accountProviders[0] : nil,
                                                showCreateAccountButton: false,
-                                               showQRCodeLoginButton: isQRCodeScanningSupported)
+                                               // Disable QR login to avoid non-SSO flows in the Quali build
+                                               showQRCodeLoginButton: false)
         } else if let provisioningParameters {
             // We only show the "Sign in to …" button when using a provisioning link.
             AuthenticationStartScreenViewState(serverName: provisioningParameters.accountProvider,
@@ -66,7 +67,11 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         case .loginWithQR:
             actionsSubject.send(.loginWithQR)
         case .login:
-            Task { await login() }
+            Task { await loginWithQualiWalletSSO() }
+        case .loginWithEthereumWallet:
+            Task { await loginWithSpecificWallet(idp: "oidc-siwe") }
+        case .loginWithSuperheroWallet:
+            Task { await loginWithSpecificWallet(idp: "oidc-aeternity") }
         case .register:
             actionsSubject.send(.register)
         case .reportProblem:
@@ -85,6 +90,39 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
             actionsSubject.send(.login) // No need to configure anything here, continue the flow.
         }
     }
+
+    private func loginWithQualiWalletSSO() async {
+        // Proceed via OIDC SSO on the Quali homeserver (wallet IdPs configured)
+        await configureAccountProvider("matrix.quali.chat", loginHint: nil)
+    }
+
+    private func loginWithSpecificWallet(idp: String) async {
+        startLoading()
+        defer { stopLoading() }
+        // Force the Quali homeserver
+        guard case .success = await authenticationService.configure(for: "matrix.quali.chat", flow: .login) else {
+            displayError()
+            return
+        }
+        // If the MAS-issued OIDC URL is available, prefer web auth session flow
+        if let window = state.window {
+            switch await authenticationService.urlForOIDCLogin(loginHint: nil) {
+            case .success(let oidcData):
+                actionsSubject.send(.loginDirectlyWithOIDC(data: oidcData, window: window))
+                return
+            case .failure:
+                break
+            }
+        }
+        // Fallback: open Synapse SSO redirect to a specific IdP which will eventually return an m.login.token
+        guard let redirectURL = authenticationService.ssoRedirectURL(redirectScheme: InfoPlistReader.main.baseBundleIdentifier, idp: idp) else {
+            displayError()
+            return
+        }
+        await MainActor.run {
+            UIApplication.shared.open(redirectURL)
+        }
+    }
     
     private func configureAccountProvider(_ accountProvider: String, loginHint: String? = nil) async {
         startLoading()
@@ -96,10 +134,7 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
             return
         }
         
-        guard authenticationService.homeserver.value.loginMode.supportsOIDCFlow else {
-            actionsSubject.send(.loginDirectlyWithPassword(loginHint: loginHint))
-            return
-        }
+        // For quali.chat build, enforce SSO regardless of advertised login modes.
         
         guard let window = state.window else {
             displayError()
@@ -110,7 +145,14 @@ class AuthenticationStartScreenViewModel: AuthenticationStartScreenViewModelType
         case .success(let oidcData):
             actionsSubject.send(.loginDirectlyWithOIDC(data: oidcData, window: window))
         case .failure:
-            displayError()
+            // Fallback to Synapse SSO redirect + m.login.token
+            guard let redirectURL = authenticationService.ssoRedirectURL(redirectScheme: InfoPlistReader.main.baseBundleIdentifier, idp: nil) else {
+                displayError()
+                return
+            }
+            await MainActor.run {
+                UIApplication.shared.open(redirectURL)
+            }
         }
     }
     

@@ -57,4 +57,7 @@ class UnitTestsAppCoordinator: AppCoordinatorProtocol {
     func handleUserActivity(_ activity: NSUserActivity) {
         fatalError("Not implemented.")
     }
+    
+    // Satisfy protocol for SSO fallback handling in tests.
+    func handleSSOLoginToken(_ token: String) { }
 }

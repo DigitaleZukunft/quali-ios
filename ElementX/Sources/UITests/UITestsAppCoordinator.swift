@@ -73,6 +73,9 @@ class UITestsAppCoordinator: AppCoordinatorProtocol, SecureWindowManagerDelegate
         fatalError("Not implemented.")
     }
     
+    // Satisfy protocol for app SSO fallback; UI tests don't perform real login here.
+    func handleSSOLoginToken(_ token: String) { }
+    
     func windowManagerDidConfigureWindows(_ windowManager: SecureWindowManagerProtocol) {
         ServiceLocator.shared.userIndicatorController.window = windowManager.overlayWindow
         

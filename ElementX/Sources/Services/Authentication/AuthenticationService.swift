@@ -100,7 +100,35 @@ class AuthenticationService: AuthenticationServiceProtocol {
             return .success(OIDCAuthorizationDataProxy(underlyingData: oidcData))
         } catch {
             MXLog.error("Failed to get URL for OIDC login: \(error)")
-            return .failure(.oidcError(.urlFailure))
+            return .failure(.oidcError(.notSupported))
+        }
+    }
+
+    // MARK: - Synapse SSO fallback (m.login.token)
+
+    func ssoRedirectURL(redirectScheme: String, idp: String? = nil) -> URL? {
+        // e.g. $(BASE_BUNDLE_IDENTIFIER)://auth/sso
+        let callback = "\(redirectScheme)://auth/sso"
+        guard let homeserver = URL(string: "https://\(homeserver.value.address)") else { return nil }
+        var components = URLComponents()
+        components.scheme = homeserver.scheme
+        components.host = homeserver.host
+        components.path = "/_matrix/client/v3/login/sso/redirect"
+        var items = [URLQueryItem(name: "redirectUrl", value: callback)]
+        if let idp { items.append(URLQueryItem(name: "idp", value: idp)) }
+        components.queryItems = items
+        return components.url
+    }
+
+    func loginWithLoginToken(_ token: String, initialDeviceName: String?, deviceID: String?) async -> Result<UserSessionProtocol, AuthenticationServiceError> {
+        // Use the SDK client to login via m.login.token if available; otherwise call the API via the client wrapper
+        guard let client else { return .failure(.failedLoggingIn) }
+        do {
+            try await client.customLoginWithJwt(jwt: token, initialDeviceName: initialDeviceName, deviceId: deviceID)
+            return await userSession(for: client)
+        } catch {
+            MXLog.error("Login with loginToken failed: \(error)")
+            return .failure(.failedLoggingIn)
         }
     }
     
@@ -124,32 +152,8 @@ class AuthenticationService: AuthenticationServiceProtocol {
     }
     
     func login(username: String, password: String, initialDeviceName: String?, deviceID: String?) async -> Result<UserSessionProtocol, AuthenticationServiceError> {
-        guard let client else { return .failure(.failedLoggingIn) }
-        do {
-            try await client.login(username: username, password: password, initialDeviceName: initialDeviceName, deviceId: deviceID)
-            
-            let refreshToken = try? client.session().refreshToken
-            if refreshToken != nil {
-                MXLog.warning("Refresh token found for a non oidc session, can't restore session, logging out")
-                _ = try? await client.logout()
-                return .failure(.sessionTokenRefreshNotSupported)
-            }
-            
-            return await userSession(for: client)
-        } catch let ClientError.MatrixApi(errorKind, _, _, _) {
-            MXLog.error("Failed logging in with error kind: \(errorKind)")
-            switch errorKind {
-            case .forbidden:
-                return .failure(.invalidCredentials)
-            case .userDeactivated:
-                return .failure(.accountDeactivated)
-            default:
-                return .failure(.failedLoggingIn)
-            }
-        } catch {
-            MXLog.error("Failed logging in with error: \(error)")
-            return .failure(.failedLoggingIn)
-        }
+        // Disable direct username/password login in Quali build; enforce SSO-only
+        return .failure(.failedLoggingIn)
     }
     
     func loginWithQRCode(data: Data) async -> Result<UserSessionProtocol, AuthenticationServiceError> {

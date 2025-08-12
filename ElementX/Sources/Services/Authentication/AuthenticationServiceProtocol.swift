@@ -56,6 +56,10 @@ protocol AuthenticationServiceProtocol: QRCodeLoginServiceProtocol {
     
     /// Resets the current configuration requiring `configure(for:flow:)` to be called again.
     func reset()
+
+    // MARK: - Synapse SSO fallback
+    func ssoRedirectURL(redirectScheme: String, idp: String?) -> URL?
+    func loginWithLoginToken(_ token: String, initialDeviceName: String?, deviceID: String?) async -> Result<UserSessionProtocol, AuthenticationServiceError>
 }
 
 // MARK: - OIDC

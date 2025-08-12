@@ -53,7 +53,8 @@ class LoginScreenViewModel: LoginScreenViewModelType, LoginScreenViewModelProtoc
         case .parseUsername:
             parseUsername()
         case .next:
-            login()
+            // Redirect to SSO-only login; skip local username/password
+            actionsSubject.send(.configuredForOIDC)
         }
     }
     

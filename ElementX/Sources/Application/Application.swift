@@ -46,7 +46,14 @@ struct Application: App {
                     return .systemAction
                 })
                 .onOpenURL { url in
-                    openURL(url, isExternalURL: true)
+                    // Handle SSO fallback callback: my.bundle.id://auth/sso?loginToken=...
+                    if url.host == "auth", url.path == "/sso",
+                       let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+                       let token = components.queryItems?.first(where: { $0.name == "loginToken" })?.value {
+                        appCoordinator.handleSSOLoginToken(token)
+                    } else {
+                        openURL(url, isExternalURL: true)
+                    }
                 }
                 .onContinueUserActivity("INStartVideoCallIntent") { userActivity in
                     // `INStartVideoCallIntent` is to be replaced with `INStartCallIntent`

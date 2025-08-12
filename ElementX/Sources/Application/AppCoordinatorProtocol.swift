@@ -16,4 +16,7 @@ protocol AppCoordinatorProtocol: CoordinatorProtocol {
     func handlePotentialPhishingAttempt(url: URL, openURLAction: @escaping (URL) -> Void) -> Bool
     
     func handleUserActivity(_ userActivity: NSUserActivity)
+
+    // SSO fallback handler for loginToken callbacks
+    func handleSSOLoginToken(_ token: String)
 }

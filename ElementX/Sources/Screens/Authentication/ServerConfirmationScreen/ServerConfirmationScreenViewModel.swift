@@ -132,9 +132,9 @@ class ServerConfirmationScreenViewModel: ServerConfirmationScreenViewModelType, 
     }
     
     private func fetchLoginURLIfNeededAndContinue() async {
-        guard authenticationService.homeserver.value.loginMode.supportsOIDCFlow else {
-            actionsSubject.send(.continueWithPassword)
-            return
+        // If OIDC is not advertised, still force OIDC SSO for quali.chat setup
+        if !authenticationService.homeserver.value.loginMode.supportsOIDCFlow {
+            // Attempt to proceed via OIDC anyway
         }
         
         guard let window = state.window else {

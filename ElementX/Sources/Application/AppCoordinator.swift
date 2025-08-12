@@ -298,6 +298,29 @@ class AppCoordinator: AppCoordinatorProtocol, AuthenticationFlowCoordinatorDeleg
         MXLog.info("Starting call in room: \(roomIdentifier)")
         handleAppRoute(AppRoute.call(roomID: roomIdentifier))
     }
+
+    // MARK: - SSO fallback handler
+    func handleSSOLoginToken(_ token: String) {
+        // If we're currently showing the auth flow, let it complete via token
+        guard authenticationFlowCoordinator != nil else {
+            MXLog.warning("Received loginToken but no authentication flow coordinator is active")
+            return
+        }
+        Task {
+            let encryptionKeyProvider = EncryptionKeyProvider()
+            let authenticationService = AuthenticationService(userSessionStore: userSessionStore,
+                                                              encryptionKeyProvider: encryptionKeyProvider,
+                                                              appSettings: appSettings,
+                                                              appHooks: appHooks)
+            _ = await authenticationService.configure(for: appSettings.accountProviders.first ?? "matrix.quali.chat", flow: .login)
+            switch await authenticationService.loginWithLoginToken(token, initialDeviceName: UIDevice.current.initialDeviceName, deviceID: nil) {
+            case .success(let session):
+                authenticationFlowCoordinator(didLoginWithSession: session)
+            case .failure(let error):
+                MXLog.error("Failed login with token: \(error)")
+            }
+        }
+    }
     
     // MARK: - AuthenticationFlowCoordinatorDelegate
     

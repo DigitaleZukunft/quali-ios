@@ -64,6 +64,9 @@ enum AuthenticationStartScreenViewAction {
     
     case loginWithQR
     case login
+    // Explicit wallet flows trigger provider-specific SSO
+    case loginWithEthereumWallet
+    case loginWithSuperheroWallet
     case register
     case reportProblem
 }

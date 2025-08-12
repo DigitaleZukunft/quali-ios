@@ -98,11 +98,17 @@ struct AuthenticationStartScreen: View {
                 .accessibilityIdentifier(A11yIdentifiers.authenticationStartScreen.signInWithQr)
             }
             
-            Button { context.send(viewAction: .login) } label: {
-                Text(context.viewState.loginButtonTitle)
+            // Preferred wallet-specific SSO entries
+            Button { context.send(viewAction: .loginWithEthereumWallet) } label: {
+                Text("Connect Ethereum wallet")
             }
             .buttonStyle(.compound(.primary))
             .accessibilityIdentifier(A11yIdentifiers.authenticationStartScreen.signIn)
+
+            Button { context.send(viewAction: .loginWithSuperheroWallet) } label: {
+                Text("Connect Superhero wallet")
+            }
+            .buttonStyle(.compound(.primary))
             
             if context.viewState.showCreateAccountButton {
                 Button { context.send(viewAction: .register) } label: {

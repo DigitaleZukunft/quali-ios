@@ -10,7 +10,7 @@ import CoreLocation
 import SwiftUI
 
 class AccessibilityTestsAppCoordinator: AppCoordinatorProtocol {
-    var windowManager: any SecureWindowManagerProtocol
+    let windowManager: SecureWindowManagerProtocol
     
     func handleDeepLink(_ url: URL, isExternalURL: Bool) -> Bool {
         fatalError("Not implemented")
@@ -23,6 +23,9 @@ class AccessibilityTestsAppCoordinator: AppCoordinatorProtocol {
     func handleUserActivity(_ userActivity: NSUserActivity) {
         fatalError("Not implemented")
     }
+    
+    // Satisfy protocol SSO fallback for accessibility tests (no-op)
+    func handleSSOLoginToken(_ token: String) { }
     
     private let previewsWrapper: PreviewsWrapper
     
