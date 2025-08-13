@@ -68,11 +68,11 @@ struct AuthenticationStartScreen: View {
             Spacer()
             
             VStack(spacing: 8) {
-                Text(L10n.screenOnboardingWelcomeTitle)
+                Text("the quality chat app")
                     .font(.compound.headingLGBold)
                     .foregroundColor(.compound.textPrimary)
                     .multilineTextAlignment(.center)
-                Text(L10n.screenOnboardingWelcomeMessage(InfoPlistReader.main.productionAppName))
+                Text(InfoPlistReader.main.productionAppName)
                     .font(.compound.bodyLG)
                     .foregroundColor(.compound.textSecondary)
                     .multilineTextAlignment(.center)

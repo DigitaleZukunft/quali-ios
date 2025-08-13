@@ -172,7 +172,7 @@ final class AppSettings {
     /// A URL where users can go read more about the app.
     private(set) var websiteURL: URL = "https://quali.chat"
     /// A URL that contains the app's logo that may be used when showing content in a web view.
-    private(set) var logoURL: URL = "https://quali.chat/wp-content/uploads/2024/07/3.png"
+    private(set) var logoURL: URL = "https://app.quali.chat/vector-icons/apple-touch-icon-180.e4f2a2d.png"
     /// A URL that contains that app's copyright notice.
     private(set) var copyrightURL: URL = "https://quali.chat"
     /// A URL that contains the app's Terms of use.
