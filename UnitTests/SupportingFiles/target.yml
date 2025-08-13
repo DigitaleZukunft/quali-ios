@@ -41,6 +41,7 @@ targets:
       base:
         PRODUCT_NAME: UnitTests
         PRODUCT_BUNDLE_IDENTIFIER: ${BASE_BUNDLE_IDENTIFIER}.unit.tests
+        DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
       debug:
       release:
 

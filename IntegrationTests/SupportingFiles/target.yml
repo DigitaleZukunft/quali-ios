@@ -48,6 +48,7 @@ targets:
       base:
         PRODUCT_NAME: IntegrationTests
         PRODUCT_BUNDLE_IDENTIFIER: ${BASE_BUNDLE_IDENTIFIER}.integration.tests
+        DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
       debug:
       release:
 

@@ -41,6 +41,7 @@ targets:
       base:
         PRODUCT_NAME: PreviewTests
         PRODUCT_BUNDLE_IDENTIFIER: ${BASE_BUNDLE_IDENTIFIER}.preview.tests
+        DEVELOPMENT_TEAM: $(DEVELOPMENT_TEAM)
       debug:
       release:
 
