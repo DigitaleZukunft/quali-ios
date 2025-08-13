@@ -15,7 +15,7 @@ options:
     macOS: '14.5'
   groupOrdering:
   - order:
-    - ElementX
+    - quali.chat
     - NSE
     - ShareExtension
     - UnitTests

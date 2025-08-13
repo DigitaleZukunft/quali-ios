@@ -15,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B9DB0F46EE860800E68F8F76"
-               BuildableName = "ElementX.app"
-               BlueprintName = "ElementX"
+               BlueprintIdentifier = "5B03A6CEC8B87F924B875E3E"
+               BuildableName = "quali.chat.app"
+               BlueprintName = "quali.chat"
                ReferencedContainer = "container:quali.chat.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,9 +39,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B9DB0F46EE860800E68F8F76"
-            BuildableName = "ElementX.app"
-            BlueprintName = "ElementX"
+            BlueprintIdentifier = "5B03A6CEC8B87F924B875E3E"
+            BuildableName = "quali.chat.app"
+            BlueprintName = "quali.chat"
             ReferencedContainer = "container:quali.chat.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -52,9 +52,9 @@
       <CodeCoverageTargets>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B9DB0F46EE860800E68F8F76"
-            BuildableName = "ElementX.app"
-            BlueprintName = "ElementX"
+            BlueprintIdentifier = "5B03A6CEC8B87F924B875E3E"
+            BuildableName = "quali.chat.app"
+            BlueprintName = "quali.chat"
             ReferencedContainer = "container:quali.chat.xcodeproj">
          </BuildableReference>
       </CodeCoverageTargets>
@@ -73,9 +73,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B9DB0F46EE860800E68F8F76"
-            BuildableName = "ElementX.app"
-            BlueprintName = "ElementX"
+            BlueprintIdentifier = "5B03A6CEC8B87F924B875E3E"
+            BuildableName = "quali.chat.app"
+            BlueprintName = "quali.chat"
             ReferencedContainer = "container:quali.chat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -109,9 +109,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B9DB0F46EE860800E68F8F76"
-            BuildableName = "ElementX.app"
-            BlueprintName = "ElementX"
+            BlueprintIdentifier = "5B03A6CEC8B87F924B875E3E"
+            BuildableName = "quali.chat.app"
+            BlueprintName = "quali.chat"
             ReferencedContainer = "container:quali.chat.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

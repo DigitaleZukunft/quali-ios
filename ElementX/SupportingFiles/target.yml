@@ -1,14 +1,14 @@
-name: ElementX
+name: quali.chat
 
 schemes:
-  ElementX:
+  quali.chat:
     analyze:
       config: Debug
     archive:
       config: Release
     build:
       targets:
-        ElementX:
+        quali.chat:
           - running
           - testing
           - profiling
@@ -32,13 +32,13 @@ schemes:
       config: Debug
       gatherCoverageData: true
       coverageTargets:
-        - ElementX
+        - quali.chat
       testPlans:
         - path: ../../UnitTests/SupportingFiles/UnitTests.xctestplan
           defaultPlan: true
 
 targets:
-  ElementX:
+  quali.chat:
     type: application
     platform: iOS
 
@@ -145,6 +145,7 @@ targets:
         DEVELOPMENT_ASSET_PATHS: DevelopmentAssets/Media
         OTHER_SWIFT_FLAGS:
         - "-DIS_MAIN_APP"
+        PRODUCT_MODULE_NAME: ElementX
 
     preBuildScripts:
     - name: 🛠 SwiftGen
