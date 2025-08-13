@@ -46,6 +46,7 @@ targets:
       path: Info.plist
       properties:
         CFBundleDisplayName: $(PRODUCT_DISPLAY_NAME)
+        CFBundleName: $(PRODUCT_DISPLAY_NAME)
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         appGroupIdentifier: $(APP_GROUP_IDENTIFIER)
