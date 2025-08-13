@@ -87,9 +87,16 @@ class SecureBackupController: SecureBackupControllerProtocol {
         
         do {
             try await encryption.enableBackups()
+        } catch let recoveryError as RecoveryError {
+            MXLog.error("Failed enabling secure backup with error: \(recoveryError)")
+            switch recoveryError {
+            case .BackupExistsOnServer:
+                return .failure(.backupExistsOnServer)
+            default:
+                return .failure(.failedEnablingBackup)
+            }
         } catch {
-            MXLog.error("Failed enabling secure backup with error: \(error)")
-            
+            MXLog.error("Failed enabling secure backup with unknown error: \(error)")
             return .failure(.failedEnablingBackup)
         }
         

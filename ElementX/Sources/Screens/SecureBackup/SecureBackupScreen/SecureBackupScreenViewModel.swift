@@ -75,7 +75,11 @@ class SecureBackupScreenViewModel: SecureBackupScreenViewModelType, SecureBackup
                 break
             case .failure(let error):
                 MXLog.error("Failed enabling key backup with error: \(error)")
-                state.bindings.alertInfo = .init(id: .init())
+                if case .backupExistsOnServer = error {
+                    actionsSubject.send(.manageRecoveryKey)
+                } else {
+                    state.bindings.alertInfo = .init(id: .init())
+                }
             }
             
             userIndicatorController.retractIndicatorWithId(loadingIndicatorIdentifier)

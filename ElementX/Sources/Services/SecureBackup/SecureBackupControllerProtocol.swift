@@ -36,6 +36,7 @@ enum SecureBackupSteadyState {
 }
 
 enum SecureBackupControllerError: Error {
+    case backupExistsOnServer
     case failedEnablingBackup
     case failedDisablingBackup
     
