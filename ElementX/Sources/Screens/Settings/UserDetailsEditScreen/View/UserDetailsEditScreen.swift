@@ -24,7 +24,7 @@ struct UserDetailsEditScreen: View {
                     .padding(.bottom, 16)
             }
             
-            nameSection
+            // Display name editing disabled for quali.chat
         }
         .compoundList()
         .scrollDismissesKeyboard(.immediately)

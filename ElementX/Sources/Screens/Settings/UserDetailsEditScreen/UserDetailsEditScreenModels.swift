@@ -26,7 +26,8 @@ struct UserDetailsEditScreenViewState: BindableState {
     var bindings: UserDetailsEditScreenViewStateBindings
     
     var nameDidChange: Bool {
-        bindings.name != currentDisplayName
+        // Display name editing disabled.
+        false
     }
       
     var avatarDidChange: Bool {
@@ -34,7 +35,8 @@ struct UserDetailsEditScreenViewState: BindableState {
     }
     
     var canSave: Bool {
-        !bindings.name.isEmpty && (avatarDidChange || nameDidChange)
+        // Only allow saving when the avatar changed.
+        avatarDidChange
     }
     
     var showDeleteImageAction: Bool {
