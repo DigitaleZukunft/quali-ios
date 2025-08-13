@@ -1,7 +1,7 @@
 settings:
   APP_DISPLAY_NAME: quali.chat
   PRODUCTION_APP_NAME: quali.chat
-  APP_GROUP_IDENTIFIER: group.io.element
-  BASE_BUNDLE_IDENTIFIER: io.element.quali
+  APP_GROUP_IDENTIFIER: group.io.quali
+  BASE_BUNDLE_IDENTIFIER: io.quali
   ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: "colors/accent-color"
   DEVELOPMENT_TEAM: 7J4U792NQT
