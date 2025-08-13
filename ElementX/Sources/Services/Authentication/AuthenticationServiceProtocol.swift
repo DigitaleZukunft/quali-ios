@@ -58,6 +58,7 @@ protocol AuthenticationServiceProtocol: QRCodeLoginServiceProtocol {
     func reset()
 
     // MARK: - Synapse SSO fallback
+
     func ssoRedirectURL(redirectScheme: String, idp: String?) -> URL?
     func loginWithLoginToken(_ token: String, initialDeviceName: String?, deviceID: String?) async -> Result<UserSessionProtocol, AuthenticationServiceError>
 }

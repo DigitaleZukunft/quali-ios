@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "Element Swift",
+    name: "quali.chat",
     platforms: [
         .macOS(.v14)
     ],

@@ -197,7 +197,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     
     func login(username: String, password: String, initialDeviceName: String?, deviceID: String?) async -> Result<UserSessionProtocol, AuthenticationServiceError> {
         // Disable direct username/password login in Quali build; enforce SSO-only
-        return .failure(.failedLoggingIn)
+        .failure(.failedLoggingIn)
     }
     
     func loginWithQRCode(data: Data) async -> Result<UserSessionProtocol, AuthenticationServiceError> {
@@ -280,6 +280,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
 }
 
 // MARK: - Optional SDK capability
+
 /// If the Rust SDK provides a native token login, conformers can expose it here without hard dependency.
 private protocol TokenLoginCapable {
     func loginWithToken(token: String, initialDeviceName: String?, deviceId: String?) async throws

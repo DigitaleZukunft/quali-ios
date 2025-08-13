@@ -348,7 +348,7 @@ internal enum L10n {
   internal static var bannerSetUpRecoverySubmit: String { return L10n.tr("Localizable", "banner_set_up_recovery_submit") }
   /// Set up recovery to protect your account
   internal static var bannerSetUpRecoveryTitle: String { return L10n.tr("Localizable", "banner_set_up_recovery_title") }
-  /// Element Call does not support using Bluetooth audio devices in this Android version. Please select a different audio device.
+  /// quali.chat Call does not support using Bluetooth audio devices in this Android version. Please select a different audio device.
   internal static var callInvalidAudioDeviceBluetoothDevicesDisabled: String { return L10n.tr("Localizable", "call_invalid_audio_device_bluetooth_devices_disabled") }
   /// About
   internal static var commonAbout: String { return L10n.tr("Localizable", "common_about") }
@@ -1090,9 +1090,9 @@ internal enum L10n {
   internal static var screenAdvancedSettingsDeveloperMode: String { return L10n.tr("Localizable", "screen_advanced_settings_developer_mode") }
   /// Enable to have access to features and functionality for developers.
   internal static var screenAdvancedSettingsDeveloperModeDescription: String { return L10n.tr("Localizable", "screen_advanced_settings_developer_mode_description") }
-  /// Custom Element Call base URL
+  /// Custom quali.chat Call base URL
   internal static var screenAdvancedSettingsElementCallBaseUrl: String { return L10n.tr("Localizable", "screen_advanced_settings_element_call_base_url") }
-  /// Set a custom base URL for Element Call.
+  /// Set a custom base URL for quali.chat Call.
   internal static var screenAdvancedSettingsElementCallBaseUrlDescription: String { return L10n.tr("Localizable", "screen_advanced_settings_element_call_base_url_description") }
   /// Invalid URL, please make sure you include the protocol (http/https) and the correct address.
   internal static var screenAdvancedSettingsElementCallBaseUrlValidationError: String { return L10n.tr("Localizable", "screen_advanced_settings_element_call_base_url_validation_error") }
@@ -1338,11 +1338,11 @@ internal enum L10n {
   internal static var screenChangeAccountProviderTitle: String { return L10n.tr("Localizable", "screen_change_account_provider_title") }
   /// App Store
   internal static var screenChangeServerErrorElementProRequiredActionIos: String { return L10n.tr("Localizable", "screen_change_server_error_element_pro_required_action_ios") }
-  /// The Element Pro app is required on %1$@. Please download it from the store.
+  /// The quali.chat Pro app is required on %1$@. Please download it from the store.
   internal static func screenChangeServerErrorElementProRequiredMessage(_ p1: Any) -> String {
     return L10n.tr("Localizable", "screen_change_server_error_element_pro_required_message", String(describing: p1))
   }
-  /// Element Pro required
+  /// quali.chat Pro required
   internal static var screenChangeServerErrorElementProRequiredTitle: String { return L10n.tr("Localizable", "screen_change_server_error_element_pro_required_title") }
   /// We couldn't reach this homeserver. Please check that you have entered the homeserver URL correctly. If the URL is correct, contact your homeserver administrator for further help.
   internal static var screenChangeServerErrorInvalidHomeserver: String { return L10n.tr("Localizable", "screen_change_server_error_invalid_homeserver") }
@@ -1924,7 +1924,7 @@ internal enum L10n {
   internal static func screenOnboardingWelcomeSubtitle(_ p1: Any) -> String {
     return L10n.tr("Localizable", "screen_onboarding_welcome_subtitle", String(describing: p1))
   }
-  /// Be in your element
+  /// the quality chat app
   internal static var screenOnboardingWelcomeTitle: String { return L10n.tr("Localizable", "screen_onboarding_welcome_title") }
   /// Press on a message and choose “%1$@” to include here.
   internal static func screenPinnedTimelineEmptyStateDescription(_ p1: Any) -> String {
@@ -2496,7 +2496,7 @@ internal enum L10n {
   }
   /// This is the beginning of this conversation.
   internal static var screenRoomTimelineBeginningOfRoomNoName: String { return L10n.tr("Localizable", "screen_room_timeline_beginning_of_room_no_name") }
-  /// Unsupported call. Ask if the caller can use the new Element X app.
+  /// Unsupported call. Ask if the caller can use the new quali.chat app.
   internal static var screenRoomTimelineLegacyCall: String { return L10n.tr("Localizable", "screen_room_timeline_legacy_call") }
   /// Show less
   internal static var screenRoomTimelineLessReactions: String { return L10n.tr("Localizable", "screen_room_timeline_less_reactions") }
@@ -2676,7 +2676,7 @@ internal enum L10n {
   internal static var screenSecurityAndPrivacyTitle: String { return L10n.tr("Localizable", "screen_security_and_privacy_title") }
   /// Change account provider
   internal static var screenServerConfirmationChangeServer: String { return L10n.tr("Localizable", "screen_server_confirmation_change_server") }
-  /// A private server for Element employees.
+  /// A private server for quali.chat employees.
   internal static var screenServerConfirmationMessageLoginElementDotIo: String { return L10n.tr("Localizable", "screen_server_confirmation_message_login_element_dot_io") }
   /// Matrix is an open network for secure, decentralised communication.
   internal static var screenServerConfirmationMessageLoginMatrixDotOrg: String { return L10n.tr("Localizable", "screen_server_confirmation_message_login_matrix_dot_org") }

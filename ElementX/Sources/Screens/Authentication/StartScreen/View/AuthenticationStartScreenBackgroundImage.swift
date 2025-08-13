@@ -15,10 +15,10 @@ struct AuthenticationStartScreenBackgroundImage: View {
             Color(red: 0.06, green: 0.23, blue: 0.31),
             Color(red: 0.08, green: 0.35, blue: 0.52)
         ], startPoint: .topLeading, endPoint: .bottomTrailing)
-        .overlay(
-            RadialGradient(gradient: Gradient(colors: [Color.white.opacity(0.08), Color.clear]), center: .center, startRadius: 0, endRadius: 380)
-        )
-        .ignoresSafeArea()
-        .accessibilityHidden(true)
+            .overlay(
+                RadialGradient(gradient: Gradient(colors: [Color.white.opacity(0.08), Color.clear]), center: .center, startRadius: 0, endRadius: 380)
+            )
+            .ignoresSafeArea()
+            .accessibilityHidden(true)
     }
 }

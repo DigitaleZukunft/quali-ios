@@ -153,7 +153,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which swiftgen >/dev/null; then
             swiftgen config run --config Tools/SwiftGen/swiftgen-config.yml
         else
@@ -164,7 +164,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which sourcery >/dev/null; then
             sourcery --config Tools/Sourcery/AutoMockableConfig.yml
         else
@@ -176,7 +176,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which sourcery >/dev/null; then
             sourcery --config Tools/Sourcery/PreviewTestsConfig.yml
         else
@@ -188,7 +188,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which sourcery >/dev/null; then
             sourcery --config Tools/Sourcery/TestablePreviewsDictionary.yml
             sourcery --config Tools/Sourcery/AccessibilityTests.yml
@@ -202,7 +202,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which swiftlint >/dev/null; then
             swiftlint
         else
@@ -213,7 +213,7 @@ targets:
       basedOnDependencyAnalysis: false
       shell: /bin/sh
       script: |
-        export PATH="$PATH:/opt/homebrew/bin"
+        export PATH="$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin"
         if which swiftformat >/dev/null; then
             swiftformat --lint --lenient "$PROJECT_DIR"
         else

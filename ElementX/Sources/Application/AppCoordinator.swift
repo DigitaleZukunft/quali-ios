@@ -300,6 +300,7 @@ class AppCoordinator: AppCoordinatorProtocol, AuthenticationFlowCoordinatorDeleg
     }
 
     // MARK: - SSO fallback handler
+
     func handleSSOLoginToken(_ token: String) {
         // If we're currently showing the auth flow, let it complete via token
         guard authenticationFlowCoordinator != nil else {

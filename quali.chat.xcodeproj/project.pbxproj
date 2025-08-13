@@ -6634,7 +6634,7 @@
 						TestTargetID = 5B03A6CEC8B87F924B875E3E;
 					};
 					1E4D4109C8A539D36F061B25 = {
-						DevelopmentTeam = 7J4U792NQT;
+						DevelopmentTeam = 8H7FGC266S;
 					};
 					2A165B095356D2FB8F62F5C0 = {
 						DevelopmentTeam = "$(DEVELOPMENT_TEAM)";
@@ -6890,7 +6890,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftgen >/dev/null; then\n    swiftgen config run --config Tools/SwiftGen/swiftgen-config.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which swiftgen >/dev/null; then\n    swiftgen config run --config Tools/SwiftGen/swiftgen-config.yml\nelse\n    echo \"warning: SwiftGen not installed, download from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
 		};
 		6CFFCA0099E2EA9D965530E5 /* 🧙 Sourcery - Generate Accessibility Tests */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6909,7 +6909,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/TestablePreviewsDictionary.yml\n    sourcery --config Tools/Sourcery/AccessibilityTests.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/TestablePreviewsDictionary.yml\n    sourcery --config Tools/Sourcery/AccessibilityTests.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
 		};
 		890A3A5BB0EE85B6A4E47E5C /* 🧙 Sourcery - Generate mocks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6928,7 +6928,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/AutoMockableConfig.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/AutoMockableConfig.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
 		};
 		A7B145C062A8D7F19B50251F /* 🧹 SwiftFormat */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6947,7 +6947,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftformat >/dev/null; then\n    swiftformat --lint --lenient \"$PROJECT_DIR\"\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which swiftformat >/dev/null; then\n    swiftformat --lint --lenient \"$PROJECT_DIR\"\nelse\n    echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
 		};
 		C25A54C42413D8AC1F639710 /* ⚠️ SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6966,7 +6966,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		D4899FBC407DAF34A233F5ED /* 🧙 Sourcery - Generate preview tests */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6985,7 +6985,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/PreviewTestsConfig.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin:$HOME/.homebrew/bin:/usr/local/bin\"\nif which sourcery >/dev/null; then\n    sourcery --config Tools/Sourcery/PreviewTestsConfig.yml\nelse\n    echo \"warning: Sourcery not installed, run swift run tools setup-project\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -8476,7 +8476,7 @@
 				APP_GROUP_IDENTIFIER = group.io.quali;
 				APP_NAME = quali.chat;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "colors/accent-color";
-				BASE_BUNDLE_IDENTIFIER = io.quali;
+				BASE_BUNDLE_IDENTIFIER = chat.quali.ios;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8510,7 +8510,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 7J4U792NQT;
+				DEVELOPMENT_TEAM = 8H7FGC266S;
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -8525,7 +8525,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				KEYCHAIN_ACCESS_GROUP_IDENTIFIER = "$(DEVELOPMENT_TEAM).$(BASE_BUNDLE_IDENTIFIER)";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 25.08.5;
+				MARKETING_VERSION = 205.08.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCTION_APP_NAME = quali.chat;
@@ -8546,7 +8546,7 @@
 				APP_GROUP_IDENTIFIER = group.io.quali;
 				APP_NAME = quali.chat;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "colors/accent-color";
-				BASE_BUNDLE_IDENTIFIER = io.quali;
+				BASE_BUNDLE_IDENTIFIER = chat.quali.ios;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -8580,7 +8580,7 @@
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 7J4U792NQT;
+				DEVELOPMENT_TEAM = 8H7FGC266S;
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -8601,7 +8601,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				KEYCHAIN_ACCESS_GROUP_IDENTIFIER = "$(DEVELOPMENT_TEAM).$(BASE_BUNDLE_IDENTIFIER)";
 				MACOSX_DEPLOYMENT_TARGET = 14.5;
-				MARKETING_VERSION = 25.08.5;
+				MARKETING_VERSION = 205.08.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
